@@ -48,7 +48,11 @@ int main(){
     #endif
 
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = inet_addr("127.0.0.1");
+    #ifdef _WIN32
+    address.sin_addr.s_addr = INADDR_ANY;
+    #else
+    address.sin_addr.s_addr = INADDR_ANY;
+    #endif
     address.sin_port = htons(port);
 
      if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
@@ -75,9 +79,11 @@ int main(){
         const char *body = "Server is Live !\n";
         char response[1024];
 
-        const char *json_body = "{\"status\": \"success\", \
-                                    \"message\": \"Server is Live ✅\", \
-                                     \"code\": 200}";
+        const char *json_body = "{"
+        "\"status\": \"success\", "
+        "\"message\": \"Server is Live ✅\", "
+        "\"code\": 200"
+    "}";
 
         int response_len = snprintf(response, sizeof(response),
             "HTTP/1.1 200 OK\r\n"
