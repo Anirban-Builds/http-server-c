@@ -36,7 +36,7 @@ int main(){
     char buffer[2048];
 
     if((server_fd = (socket(AF_INET, SOCK_STREAM, 0)))== INVALID_SOCKET){
-        perror("Socket Failure !");
+        perror("Socket Creation Failure !");
         return 1;
     }
 
@@ -52,7 +52,7 @@ int main(){
     address.sin_port = htons(port);
 
      if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-        perror("Binding Failure !");
+        perror("Port Binding Failure !");
         return 1;
     }
 

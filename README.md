@@ -1,6 +1,6 @@
 ---
-title: HTTP Server C
-sdk : docker
+Title: HTTP Server C
+SDK : docker
 ---
 
 A repo for HTTP server development in pure C
