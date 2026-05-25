@@ -72,7 +72,6 @@ int main(){
             buffer[valread] = '\0';
         }
 
-        const char *body = "Server is Live !\n";
         char response[1024];
 
         const char *json_body = "{"
@@ -83,7 +82,7 @@ int main(){
 
         int response_len = snprintf(response, sizeof(response),
             "HTTP/1.1 200 OK\r\n"
-            "Content-Type: text/plain; charset=utf-8\r\n"
+            "Content-Type: application/json; charset=utf-8\r\n"
             "Content-Length: %d\r\n"
             "Access-Control-Allow-Origin: *\r\n"
             "Connection: close\r\n\r\n%s",
