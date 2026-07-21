@@ -1,5 +1,6 @@
 #include "stdlib.h"
 #include "string.h"
+#include "ctype.h"
 
 #ifdef _WIN32
     #define STRCASESTR strcasestr_custom
