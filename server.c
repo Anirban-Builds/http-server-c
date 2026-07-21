@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "helper_hsc.h"
 
 #ifdef _WIN32
     #include <winsock2.h>
@@ -70,6 +71,13 @@ int main(){
         int valread = recv(client_socket, buffer, sizeof(buffer)-1, 0);
         if (valread > 0) {
             buffer[valread] = '\0';
+        }
+
+        if(!is_allowed_origin(buffer)){
+            char *resp = "HTTP/1.1 403 Forbidden\r\nContent-Length: 0\r\n\r\n";
+            send(client_socket, resp, strlen(resp), 0);
+            close_socket(client_socket);
+            continue;
         }
 
         char response[1024];
